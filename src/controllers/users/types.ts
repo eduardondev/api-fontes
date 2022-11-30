@@ -1,6 +1,8 @@
-export type UserPayload = {
+export type User = {
   id?: string;
   name: string;
   username: string;
-  password: string;
+  password?: string;
+  created_at?: Date;
+  updated_at?: Date;
 };

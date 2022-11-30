@@ -11,22 +11,22 @@ model Users {
   id          String @default(uuid()) @id
   name        String
   password    String
-  username    String
+  username    String @unique
   projects    Projects[]
-  created_at  DateTime
-  updated_at  DateTime
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @default(now())
 }
 
 model Projects {
   id          String @default(uuid()) @id
-  name        String
+  title       String
   deadline    DateTime
   done        Boolean
   zip_code    Int
   cost        Float
-  user        Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id     String
-  created_at  DateTime @default(now())
-  updated_at  DateTime
+  user        Users @relation(fields: [username], references: [username], onDelete: Cascade)
+  username    String
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @default(now())
 
 }
